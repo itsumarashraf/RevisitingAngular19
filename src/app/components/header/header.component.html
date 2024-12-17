@@ -1,4 +1,4 @@
 <div class="header flex justify-between px-5 items-center">
-    <p class="font-bold spacing text-xl">{{title()}}</p>
+    <p class="font-bold spacing text-xl cursor-pointer" routerLink="/">{{title()}}</p>
     <app-primary-button [label]="'Cart ('+cartService.cart().length +')'" (btnClicked)="showButtonClicked()" routerLink="/cart"/>
 </div>
