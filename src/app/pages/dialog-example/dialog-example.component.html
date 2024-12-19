@@ -1,0 +1,19 @@
+<div class="card" style="width: 500px !important; margin: auto; padding-top: 100px;">
+    <mat-card >
+        <div class="alert alert-info">
+        <strong>Angular Material Dialog Component</strong>
+        </div>
+       </mat-card>
+       <mat-card>
+        <h2>Dialog With Form</h2>
+        <button mat-raised-button (click)="dialogForm()">Click Me To Open</button>
+        <br>
+        @if (firstName && lastName) {
+    
+            <!-- <ng-template [ngIf]="firstName && lastName"> -->
+            <h2>First Name IS : {{ firstName }}</h2>
+            <h2>Last Name IS : {{ lastName }}</h2>
+            <!-- </ng-template> -->
+        }
+       </mat-card>
+</div>
