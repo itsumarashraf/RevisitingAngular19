@@ -1,0 +1,13 @@
+<h2>There are three view encapsulation modes: Emulated, ShadowDom, and None {{counter}}</h2>
+<app-weather-widget [(value)]="counter" [(user)]="user" (emitOutside)="handleEmitFromChild($event)">
+    <h1>this </h1>
+    <div class="custom-content text-600 p-5 justify-center text-center text-yellow-700 ">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt eius omnis eligendi eaque necessitatibus et.
+    </div>
+</app-weather-widget>
+
+<p>I'm the {{ name() }}</p>
+<p>My name is {{ user | json }}</p>
+<input type="text" (input)="onchangeHandle($event)">
+
+
