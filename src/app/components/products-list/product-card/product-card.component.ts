@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, input } from '@angular/core';
 import { Product } from '../../../../models/products.module';
 import { PrimaryButtonComponent } from "../../primary-button/primary-button.component";
 import { CartService } from '../../../services/cart.service';
@@ -12,9 +12,12 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class ProductCardComponent {
   cartService = inject(CartService)
-
+  cd = inject(ChangeDetectorRef)
   product = input.required<Product>()
 
+  ngOnInit(){
+    
+  }
   handleButtonClicked(product:Product){
     this.cartService.addToCart(product)
   }
