@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { CartComponent } from './pages/cart/cart.component';
+
+import { ChangeDetectionComponent } from './pages/change-detection/change-detection.component';
+
 import { DialogExampleComponent } from './pages/dialog-example/dialog-example.component';
 import { ContentProjectionComponent } from './components/content-projection/content-projection.component';
 import { RenderingComponentsComponent } from './pages/rendering-components/rendering-components.component';
@@ -23,6 +26,10 @@ export const routes: Routes = [
         component:CartComponent
     },
     {
+
+        path:'change-detection',
+        component:ChangeDetectionComponent
+    },
         path:'dialog',
         component:DialogExampleComponent
     },
