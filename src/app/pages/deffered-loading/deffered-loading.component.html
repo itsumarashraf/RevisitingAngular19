@@ -1,0 +1,7 @@
+<p>deffered-loading works!</p>
+<button (click)="load=true" style="margin-bottom: 100vh;">load</button>
+@defer(on viewport ){
+    <app-products-list></app-products-list>
+}@placeholder {
+    <p>Loading...</p>
+}
