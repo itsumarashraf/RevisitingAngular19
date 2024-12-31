@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { RenderingComponentsComponent } from './pages/rendering-components/rendering-components.component';
 import { DefferedLoadingComponent } from './pages/deffered-loading/deffered-loading.component';
 import { DirectivesComponent } from './pages/directives/directives.component';
 import { AddProductComponent } from './pages/add-product/add-product.component';
@@ -20,6 +21,9 @@ export const routes: Routes = [
         component:CartComponent
     },
     {
+        path:'rendering-components',
+        component:RenderingComponentsComponent
+    }
         path:'deffered-loading',
         pathMatch:'full',
         component:DefferedLoadingComponent
