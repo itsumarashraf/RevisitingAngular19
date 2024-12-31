@@ -1,0 +1,35 @@
+<div class="form-wrapper flex flex-col mx-[300px] justify-center">
+
+    <h1 class="my-2 text-[29px] font-bold">Creating asynchronous validators</h1>
+    <p>
+        Asynchronous validators implement the AsyncValidatorFn and AsyncValidator interfaces. These are very similar to their synchronous counterparts, with the following differences. </p>
+<br><br>
+
+<ul>
+    <li>The validate() functions must return a Promise or an observable, </li> <br>
+    <li>The observable returned must be finite, meaning it must complete at some point. To convert an infinite observable into a finite one, pipe the observable through a filtering operator such as first, last, take, or takeUntil.
+    </li> <br>
+    <li>Asynchronous validation happens after the synchronous validation, and is performed only if the synchronous validation is successful. This check lets forms avoid potentially expensive async validation processes (such as an HTTP request) if the more basic validation methods have already found invalid input.
+    </li><br>
+</ul>
+
+    <p>After asynchronous validation begins, the form control enters a pending state. Inspect the control's pending property and use it to give visual feedback about the ongoing validation operation.</p>
+
+    <br>
+    <p>The following example demonstrates if the entered role is available by calling an http call (eg: value ['admin','umar','root','password'] is not available) </p>
+
+    <br><br>
+
+    <input class="border-lime-300 p-3 border-2" type="text" [formControl] ="roleControl">
+    @if(isLoading){
+        <p class="text-blue-500 text-[16px]">Checking if role is available....</p>
+    }
+    @if(roleControl.hasError('uniqueRole') && (roleControl.dirty || roleControl.touched)){
+         <div class="error">
+        <p class="text-orange-500">{{roleControl.value}} role is currently unavailable.</p>
+        <!-- {{roleControl.errors |json}} -->
+    </div>
+    }
+   
+    <br><button class="bg-red-500 text-white p-4" (click)="handleAsyncValidation()">Submit</button>
+</div>
