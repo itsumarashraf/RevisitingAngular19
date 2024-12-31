@@ -1,0 +1,59 @@
+<div class="form-wrapper flex flex-col mx-[300px] justify-center">
+    <h1 class="my-2 text-[29px] font-bold">Validating form input</h1>
+    <p>You can improve overall data quality by validating user input for accuracy and completeness. This page shows how to validate user input from the UI and display useful validation messages, in both reactive and template-driven forms.</p>
+    <br><br>
+
+    <h1 class="my-2 text-[29px] font-bold"> Validating input in reactive forms</h1>
+    <p>In a reactive form, the source of truth is the component class. Instead of adding validators through attributes in the template, you add validator functions directly to the form control model in the component class. Angular then calls these functions whenever the value of the control changes.</p>
+    <br><br>
+
+    <h1 class="my-2 text-[23px] font-bold"> Validator functions</h1>
+    <p>Validator functions can be either synchronous or asynchronous.</p>
+    <br>
+    <ul>
+        <li><b>Sync validators:</b> <br>	Synchronous functions that take a control instance and <b>immediately</b> return either a set of validation errors or null. Pass these in as the second argument when you instantiate a FormControl.</li><br>
+        <li><b>Async validators:</b> <br>	Asynchronous functions that take a control instance and return a <b>Promise or Observable</b> that later emits a set of validation errors or null. Pass these in as the third argument when you instantiate a FormControl.</li>
+    </ul>
+   
+<br>
+<h2 class="font-bold my-2 text-[20px]">👇 Inbuild and Custom validation that prevents entering name <b>bob</b></h2>
+    <form [formGroup]="actorForm">
+        <label for="">Name:</label><br>
+        <input type="text" id="name" class="border-lime-300 p-3 border-2" formControlName="name" required>
+        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
+            <div *ngIf="name?.hasError('required')">
+                Name is required.
+            </div>
+            <div *ngIf="name?.hasError('minlength')">
+                Name must be at least 4 characters long.
+            </div>
+            <div *ngIf="name?.hasError('forbiddenName')">
+                Name cannot be Bob. <br>
+                {{name?.errors | json}}
+            </div>
+        </div>
+    </form>
+
+    <br><br>
+
+    <h1 class="my-2 text-[29px] font-bold">Cross-field validation</h1>
+    <p>
+        A cross-field validator is a custom validator that compares the values of different fields in a form and accepts or rejects them in combination. For example, you might have a form that offers mutually incompatible options, so that if the user can choose A or B, but not both. Some field values might also depend on others; a user might be allowed to choose B only if A is also chosen.</p>
+
+    <br><br>
+    <form [formGroup]="actor">
+        <label for="">Name</label><br>
+    <input type="text" class="border-lime-300 p-3 border-2" formControlName="name"><br>
+    <label for="">Role</label><br>
+    <input type="text" class="border-lime-300 p-3 border-2" formControlName="role"><br>
+    <label for="">Skill</label><br>
+    <input type="text" class="border-lime-300 p-3 border-2" formControlName="skill"><br>
+
+    <div class="text-red-600" *ngIf="actor.hasError('nameRoleConflict') && (actor.touched || actor.dirty)">
+        Name cannot be same as role. <br>
+        {{actor.errors| json}}
+    </div>
+    <br>    <button class="bg-red-500 text-white p-4" (click)="submitActorForm()">Submit</button>
+
+    </form>
+</div>
