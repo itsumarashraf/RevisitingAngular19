@@ -1,0 +1,108 @@
+<a class="font-bold text-[20px] rounded-lg  text-white mx-[100px] float-right inline-block mt-3 cursor-pointer bg-blue-500 p-2" href="/form-validation">Form Validation</a>
+<h1 class="font-bold text-[29px] my-4 mx-[100px]">Reactive forms</h1>
+<p class="mx-[100px]">
+Reactive forms provide a model-driven approach to handling form inputs whose values change over time. This guide shows you how to create and update a basic form control, progress to using multiple controls in a group, validate form values, and create dynamic forms where you can add or remove controls at run time.
+</p>
+<br>
+<div class="form-wrapper flex flex-col mx-[300px] justify-center">
+    <label for="name">Name: </label><br>
+    <input class="border-lime-300 p-3 border-2" type="text" [formControl]="name">
+    <br><br>
+    <button class="bg-red-500 text-white p-4" (click)="updateValue()">Update Value</button>
+</div>
+<br>
+<h1 class="font-bold text-[29px] my-4 mx-[100px]">Form group</h1>
+<p class="mx-[100px]">
+Defines a form with a fixed set of controls that you can manage together. Form group basics are discussed in this section. You can also nest form groups to create more complex forms.
+</p>
+<br><br>
+
+<form class="form-wrapper flex flex-col mx-[300px] justify-center" [formGroup]="profileForm">
+    <label for="">First Name</label><br>
+    <input type="text" class="border-lime-300 p-3 border-2" formControlName="firstName"><br>
+    <label for="">Last Name</label><br>
+    <input type="text" class="border-lime-300 p-3 border-2" formControlName="lastName">
+    <br>    <button class="bg-red-500 text-white p-4" (click)="submitProfileInfo()">Submit</button>
+
+</form>
+
+<br><br>
+<h1 class="font-bold text-[29px] my-4 mx-[100px]">Using the FormBuilder service to generate controls</h1>
+<p class="mx-[100px]">
+    Creating form control instances manually can become repetitive when dealing with multiple forms. The FormBuilder service provides convenient methods for generating controls.
+<br>
+Use the following steps to take advantage of this service.
+<br>
+Import the FormBuilder class. <br>
+Inject the FormBuilder service. <br>
+Generate the form contents. <br>
+The following examples show how to refactor the ProfileEditor component to use the form builder service to create form control and form group instances.
+</p>
+
+<br><br>
+<form class="form-wrapper flex flex-col mx-[300px] justify-center" [formGroup]="employeeForm">
+    <label for="">First Name</label><br>
+    <input type="text" class="border-lime-300 p-3 border-2" formControlName="firstName"><br>
+    <label for="">Last Name</label><br>
+    <input type="text" class="border-lime-300 p-3 border-2" formControlName="lastName"><br>
+
+    <div class="address" formGroupName="address" class="form-wrapper flex flex-col mr-[90px] justify-center">
+        <label for="">Street</label><br>
+        <input type="text" class="border-lime-300 p-3 border-2" formControlName="street"><br>
+        <label for="">City</label><br>
+        <input type="text" class="border-lime-300 p-3 border-2" formControlName="city"><br>
+        <label for="">State</label><br>
+        <input type="text" class="border-lime-300 p-3 border-2" formControlName="state"><br>
+        <label for="">Zip</label><br>
+        <input type="text" class="border-lime-300 p-3 border-2" formControlName="zip">
+
+    </div>
+    <br>    <button class="bg-red-500 text-white p-4" (click)="submitEmployeeForm()">Submit</button>
+</form>
+
+
+<br><br><br>
+
+<h1 class="font-bold text-[29px] my-4 mx-[100px]">Creating dynamic forms</h1>
+<p class="mx-[100px]">
+    FormArray is an alternative to FormGroup for managing any number of unnamed controls. As with form group instances, you can dynamically insert and remove controls from form array instances, and the form array instance value and validation status is calculated from its child controls. However, you don't need to define a key for each control by name, so this is a great option if you don't know the number of child values in advance. <br>
+    <br>
+    To define a dynamic form, take the following steps.
+    <br><br>
+    <b>Import the FormArray class.</b> <br>
+    <b>Define a FormArray control.</b> <br>
+    <b>Access the FormArray control with a getter method.</b> <br>
+    <b>Display the form array in a template.</b> <br><br>
+    <i>The following example shows you how to manage an array of aliases in ProfileEditor.</i>
+</p>
+
+<form class="form-wrapper flex flex-col mx-[300px] justify-center" [formGroup]="dynamicProfileForm">
+    <label for="">First Name</label><br>
+    <input type="text" class="border-lime-300 p-3 border-2" formControlName="firstName"><br>
+    <label for="">Last Name</label><br>
+    <input type="text" class="border-lime-300 p-3 border-2" formControlName="lastName"><br>
+
+    <div class="address" formGroupName="address" class="form-wrapper flex flex-col mr-[90px] justify-center">
+        <label for="">Street</label><br>
+        <input type="text" class="border-lime-300 p-3 border-2" formControlName="street"><br>
+        <label for="">City</label><br>
+        <input type="text" class="border-lime-300 p-3 border-2" formControlName="city"><br>
+        <label for="">State</label><br>
+        <input type="text" class="border-lime-300 p-3 border-2" formControlName="state"><br>
+        <label for="">Zip</label><br>
+        <input type="text" class="border-lime-300 p-3 border-2" formControlName="zip">
+
+    </div>
+    <br>
+    <div class="skills-wrapper  ">
+        <div class="skills" formArrayName="skills">
+            @for(skill of skills.controls; let i = $index; track i; ){
+                <label for="skill-{{i}}">Skill:</label><br>
+                <input id="skill-{{ i }}"  type="text" class="border-lime-300 p-3 border-2" [formControlName]="i"><br>
+            }
+        </div><br>
+        <button class="bg-red-500 text-white p-4" (click)="addSkills()">Add Skill</button>
+        <button class="bg-blue-500 mx-4 text-white p-4" (click)="submitDynamicForm()">Submit</button>
+
+    </div>
+</form>

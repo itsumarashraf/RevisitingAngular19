@@ -1,0 +1,23 @@
+<p appHighlight>directives works!</p>
+<br><br>
+<h1>hange the appearance or behavior of DOM elements and Angular components with attribute directives.</h1>
+<br>
+<h1 appHover="blue">Hover Over Me</h1>
+<span appHover="red">Im Also Hoverable</span><br>
+<span appHover="orange" ngNonBindable>Im Also Hoverable {{9+90}}</span>
+
+<br><br>
+<h1>Structural directives<br>
+    edit
+    Structural directives are directives applied to an ng-templat-> element that conditionally or repeatedly render the content of that ng-template>.
+    
+</h1>
+
+<ng-template #um></ng-template>
+<div *appShow="true">This will be displayed.</div>
+
+
+<p class="data-view" *select="let data from source">The data is: {{data}}</p>
+<ng-template select let-data [selectFrom]="source">
+    <p class="data-view">The data is: {{data}}</p>
+  </ng-template>
