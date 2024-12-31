@@ -1,0 +1,20 @@
+<div class="rendering-components m-8">
+    <h1 class="font-bold text-red-400 my-4 size-5  w-full">Programmatically rendering components</h1>
+    <p>In addition to using a component directly in a template,
+        you can also dynamically render components. There are two main ways to dynamically render a component: in a template with 
+        <b>NgComponentOutlet</b>,or in your TypeScript code with <b>ViewContainerRef</b>.</p>
+
+        <br><br>
+
+    <p>Example using NgComponentOutlet:</p>
+    <p>Profile for {{isAdmin?'Admin':'Standard'}}</p>
+    <ng-container *ngComponentOutlet="getBioComponent(); inputs:{name:'umar'}" />
+    <br><br><br><br>
+    <p>Example using ViewContainerRef:</p>
+    <ng-container #vcr></ng-container>
+    <button (click)="loadComponentWithViewContainerRef()">Load content</button>
+
+    <br><br><br><br>
+    <p>Lazy Loading:</p>
+    <ng-container #lvcr></ng-container>
+    <button (click)="lazyloadComponent()">Lazy Load Component</button>
