@@ -3,6 +3,7 @@ import { ProductsListComponent } from './pages/products-list/products-list.compo
 import { CartComponent } from './pages/cart/cart.component';
 import { AddProductComponent } from './pages/add-product/add-product.component';
 import { FormValidationComponent } from './pages/form-validation/form-validation.component';
+import { AsyncFormValidationComponent } from './pages/async-form-validation/async-form-validation.component';
 
 export const routes: Routes = [
     {
@@ -26,5 +27,11 @@ export const routes: Routes = [
         pathMatch:'full',
         title:'Angular Forms validation',
         component:FormValidationComponent
+    },
+    {
+        path:'async-form-validation',
+        pathMatch:'full',
+        title:'Angular Forms validation',
+        component:AsyncFormValidationComponent
     },
 ];
